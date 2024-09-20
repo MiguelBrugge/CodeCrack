@@ -1,0 +1,43 @@
+:root{
+    --green: rgb(0, 255, 179);
+    --lightGreen: rgb(119, 255, 214);
+    --dark: #2d2d2d;
+}
+
+html, body{
+    margin: 0;
+    padding: 0;
+    height: 100%;
+}
+
+#answer-input{
+    border-radius: 10px 0 0 10px !important;
+    border-style: solid;
+    border-color: var(--dark);
+}
+
+#submit-button{
+    border-radius: 0 10px 10px 0 !important;
+    border-left: 0 !important;
+    background: var(--green);
+    border-style: solid;
+    border-color: var(--dark);
+}
+
+#submit-button:hover{
+    border-radius: 10px !important;
+    border-color: transparent;
+    outline: 3px solid;
+    transform: scale(1.05);
+    background-color: var(--lightGreen);
+}
+
+.codeSnippet{
+    width: 75%;
+}
+
+@media (max-width: 900px) {
+    .codeSnippet{
+        width: 100% !important;
+    }
+}
