@@ -4,12 +4,42 @@
     --dark: #2d2d2d;
 }
 
-html, body{
-    margin: 0;
-    padding: 0;
-    height: 100%;
+#subjects-wrapper div .checkbox:active, button:active{
+    transition: all 0.1s ease-in-out;
+    transform: scale(0.9) !important;
 }
 
+/* width */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    background: none; 
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: #888; 
+    border-radius: 8px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+    background: var(--dark); 
+}
+
+button{
+    border-style: solid;
+    border-color: var(--dark);
+}
+
+button:hover{
+    transform: scale(1.05);
+}
+
+/* Snippet */
 #answer-input{
     border-radius: 10px 0 0 10px !important;
     border-style: solid;
@@ -32,12 +62,56 @@ html, body{
     background-color: var(--lightGreen);
 }
 
-.codeSnippet{
-    width: 75%;
+#code{
+    height: 80vh !important;
 }
 
-@media (max-width: 900px) {
-    .codeSnippet{
-        width: 100% !important;
-    }
+.codeSnippet{
+    height: 100%;
+}
+
+/* Aside */
+#close-button{
+    height: 40px !important;
+    width: 40px !important;
+}
+
+.collapsed{
+    max-width: 60px !important;
+}
+
+/* Subjects */
+#subjects-wrapper{
+    height: 20vh;
+}
+
+#subjects-wrapper div .checkbox{
+    height: 22px;
+    width: 22px;
+    border: solid 3px var(--dark);
+    cursor: pointer;
+}
+
+#subjects-wrapper div .checkbox:hover:not(.active){
+    background-color: var(--lightGreen);
+    opacity: 0.7;
+}
+
+#subjects-wrapper div .checkbox:hover{
+    transform: scale(1.05);
+}
+
+#subjects-wrapper div .active{
+    background-color: var(--green);
+}
+
+#subjects-wrapper div:nth-child(odd){
+    background-color: rgb(235, 235, 235);
+}
+
+/* Difficulty */
+.form-select{
+    box-shadow: none !important;
+    outline: none !important;
+    border: 1px solid var(--dark) !important;
 }
