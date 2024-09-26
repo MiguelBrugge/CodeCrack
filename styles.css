@@ -4,6 +4,11 @@
     --dark: #2d2d2d;
 }
 
+main{
+    padding: 1.5rem;
+    padding-left: 3rem;
+}
+
 #subjects-wrapper div .checkbox:active, button:active{
     transition: all 0.1s ease-in-out;
     transform: scale(0.9) !important;
@@ -114,4 +119,15 @@ button:hover{
     box-shadow: none !important;
     outline: none !important;
     border: 1px solid var(--dark) !important;
+}
+
+@media screen and (max-width: 500px){
+    #answer-form{
+        flex-direction: column !important;
+        gap: 0.5rem;
+    }
+    #submit-button, #answer-input{
+        border-radius: 10px !important;
+        border: solid 3px var(--dark) !important;
+    }
 }

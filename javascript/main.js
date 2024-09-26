@@ -67,7 +67,7 @@ function changeCodeSnippet() {
         currentSnippet = snippets[randomNumber];
         codeSnippet.innerHTML = currentSnippet.code;
         snippetNameElement.innerText = currentSnippet.name;
-        snippetInfo.innerHTML = currentSnippet.subject  + ' | ' + currentSnippet.difficulty;
+        snippetInfo.innerHTML = currentSnippet.subject + ' | ' + currentSnippet.difficulty;
         descriptionElement.innerHTML = currentSnippet.description;
         Prism.highlightElement(codeSnippet);
         break;
@@ -98,7 +98,7 @@ function submitAnswer() {
         answerInput.value = '';
         globalOutput = undefined;
         changeCodeSnippet();
-    } else {
+    } else { 
         console.log('Incorrect answer: ' + globalOutput);
     }
 }
@@ -112,6 +112,6 @@ selectDifficulty.onchange = function () {
     difficulty = selectDifficulty.options[selectDifficulty.selectedIndex].value;
 }
 
-skipButton.onclick = function(){
+skipButton.onclick = function () {
     changeCodeSnippet();
 }
