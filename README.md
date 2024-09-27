@@ -1,1 +1,2 @@
-# CodeCrack
+Welcome to CodeCrack! Here, you will learn to read JavaScript code through engaging puzzles. Guess the outputs and deepen your understanding of coding logic with every challenge!
+Link: https://miguelbrugge.github.io/CodeCrack/

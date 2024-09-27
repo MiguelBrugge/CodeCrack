@@ -67,6 +67,10 @@ button:hover{
     background-color: var(--lightGreen);
 }
 
+#answer-button:hover{
+    color: orangered;
+}
+
 #code{
     height: 80vh !important;
 }

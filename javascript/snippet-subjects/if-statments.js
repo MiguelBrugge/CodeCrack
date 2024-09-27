@@ -209,6 +209,28 @@ const ifStatements = [
     `
   },
   {
+    name: "Even or Odd",
+    difficulty: "Medium",
+    subject: "If Statements",
+    description: "This snippet uses a simple ternary operator to check if a number is even or odd.",
+    code: `
+    const num = ${getRandomInt(0, 10)};
+
+    console.log(num % 2 === 0 ? 'Even' : 'Odd');
+    `
+  },
+  {
+    name: "Positive, Negative or Zero",
+    difficulty: "Medium",
+    subject: "If Statements",
+    description: "This snippet uses a ternary operator to check if a number is positive, negative, or zero.",
+    code: `
+    const num = ${getRandomInt(-10, 10)};
+
+    console.log(num > 0 ? 'Positive' : num < 0 ? 'Negative' : 'Zero');
+    `
+  },
+  {
     name: "Number 1",
     difficulty: "Medium",
     subject: "If Statements",
@@ -300,54 +322,46 @@ const ifStatements = [
     `
   },
   {
-    name: "Advanced Ternary Operator",
-    difficulty: "Hard",
-    subject: "If Statements",
-    description: "This snippet uses a more complex ternary operator with multiple conditions.",
-    code: `
-    const num = ${getRandomInt(0, 10)};
-
-    console.log(
-        num > 8 ? 'High' :
-        num > 5 ? 'Medium' : 
-        num > 2 ? 'Low' : 'Very Low'
-    );
-    `
-  },
-  {
     name: "Nested Ternary Operator",
     difficulty: "Hard",
     subject: "If Statements",
     description: "This snippet uses a nested ternary operator for complex logic.",
     code: `
     const num = ${getRandomInt(0, 10)};
+    const words = ['Low', 'Mid', 'High'];
 
     console.log(
         num % 2 === 0 
-            ? (num > 5 ? '>= 5' : '<= 5') 
+            ? (num > 5 
+                ? words[2] // 'High' if num > 5
+                : (num >= 3 
+                    ? words[1] // 'Mid' if 3 <= num <= 5
+                    : words[0])) // 'Low' if num < 3
             : 'Odd'
     );
     `
-  }, {
+  },
+  {
     name: "Multi-Level Access Decider",
     difficulty: "Hard",
     subject: "If Statements",
     description: "This snippet evaluates multiple user attributes to determine access levels with ambiguous outcomes.",
     code: `
-    const userLevel = ['superuser', 'moderator', 'guest'][${getRandomInt(0, 2)}];
-    const hasSubscription = ${Math.random() < 0.5};
-    const accountAge = ${getRandomInt(0, 5)}; // In years
+    const userLevel = ['superuser', 'moderator', 'guest'][new Date().getSeconds() % 3];
+    const hasSubscription = !!(new Date().getMinutes() % 2);
+    const accountAge = new Date().getFullYear() - (2018 + (new Date().getSeconds() % 5)); // In years
+    const accessLog = ['restricted', 'warning', 'clear'][new Date().getSeconds() % 3];
 
-    if (userLevel === 'superuser' || (userLevel === 'moderator' && hasSubscription)) {
-        console.log('Access Level: 10');
-    } else if (userLevel === 'guest' && accountAge > 1) {
-        console.log('Access Level: 5');
-    } else if (userLevel === 'moderator' && !hasSubscription) {
-        console.log('Access Level: 3');
+    if (userLevel === 'superuser' || (userLevel === 'moderator' && hasSubscription && accessLog !== 'restricted')) {
+        console.log('Level 10');
+    } else if (userLevel === 'guest' && accountAge > 1 && accessLog === 'clear') {
+        console.log('Level 5');
+    } else if (userLevel === 'moderator' && !hasSubscription && accessLog === 'warning') {
+        console.log('Level 3');
     } else {
-        console.log('Access Level: 0');
+        console.log('Level 0');
     }
-    `
+  `
   },
   {
     name: "Complex Number Classification",
@@ -358,17 +372,17 @@ const ifStatements = [
     const value = ${getRandomInt(-30, 30)};
 
     if (value === 0) {
-        console.log('Zero - Neutral');
+        console.log(1);
     } else if (value > 10 && value <= 20) {
-        console.log('High Positive');
+        console.log(2);
     } else if (value > 20 && value <= 30) {
-        console.log('Very High Positive');
+        console.log(3);
     } else if (value < -10 && value >= -20) {
-        console.log('High Negative');
+        console.log(4);
     } else if (value < -20) {
-        console.log('Very High Negative');
+        console.log(5);
     } else {
-        console.log('Mild');
+        console.log(6);
     }
     `
   },
@@ -380,19 +394,27 @@ const ifStatements = [
     code: `
     const a = ${getRandomInt(-20, 20)};
     const b = ${getRandomInt(-20, 20)};
-
+  
     if (a === b) {
-        console.log('Equal');
-    } else if ((a + b) % 3 === 0) {
-        if (a > b) {
-            console.log('A is greater and sum is divisible by 3');
+        console.log(1);
+    } else if ((a + b) % 3 === 0 && (a - b) % 2 === 0) {
+        if (a > 0 && b < 0) {
+            console.log(2);
+        } else if (a % 2 === 0 || b % 2 === 0) {
+            console.log(3);
         } else {
-            console.log('B is greater and sum is divisible by 3');
+            console.log(4);
         }
-    } else if (Math.abs(a - b) > 10) {
-        console.log('Numbers are far apart');
+    } else if (a * b < 0) {
+        if (a + b < -10) {
+            console.log(5);
+        } else {
+            console.log(6);
+        }
+    } else if ((a > 10 && b < 0) || (b > 10 && a < 0)) {
+        console.log(7);
     } else {
-        console.log('Close Numbers');
+        console.log(8);
     }
     `
   },
@@ -404,16 +426,28 @@ const ifStatements = [
     code: `
     const permissions = ['read', 'write', 'execute'][${getRandomInt(0, 2)}];
     const hasTwoFactorAuth = ${Math.random() < 0.5};
-    const securityClearance = ${getRandomInt(0, 3)}; // Level 0 to 2
-
-    if (permissions === 'execute' && hasTwoFactorAuth) {
-        console.log('Access Granted: Full');
-    } else if (permissions === 'write' && securityClearance > 1) {
-        console.log('Access Granted: Limited');
-    } else if (permissions === 'read' && securityClearance === 0) {
-        console.log('Access Granted: Read Only');
+    const securityClearance = ${getRandomInt(0, 3)};
+    const deviceTrustLevel = ${getRandomInt(1, 5)};
+    const isRemoteAccess = ${Math.random() < 0.3};
+  
+    function encryptedCheck(a, b) {
+        return ((a * b) % 2 === 0) && (a ^ b) > 1;
+    }
+  
+    if (permissions === 'execute' && hasTwoFactorAuth && encryptedCheck(securityClearance, deviceTrustLevel)) {
+        console.log(1);
+    } else if (permissions === 'write' && securityClearance > 1 && (isRemoteAccess ? deviceTrustLevel > 3 : deviceTrustLevel < 3)) {
+        console.log(2);
+    } else if (permissions === 'read' && securityClearance === 0 && encryptedCheck(deviceTrustLevel, securityClearance + 2)) {
+        console.log(3);
+    } else if ((permissions === 'write' || permissions === 'execute') && !hasTwoFactorAuth && !isRemoteAccess) {
+        if (deviceTrustLevel > 2 || encryptedCheck(securityClearance, deviceTrustLevel)) {
+            console.log(5);
+        } else {
+            console.log(6);
+        }
     } else {
-        console.log('Access Denied');
+        console.log(4);
     }
     `
   }

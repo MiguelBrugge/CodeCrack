@@ -3,6 +3,7 @@ import snippets from './snippets.js';
 const answerForm = document.getElementById('answer-form');
 const answerInput = document.getElementById('answer-input');
 const skipButton = document.getElementById('skip-button');
+const answerButton = document.getElementById('answer-button');
 
 const snippetNameElement = document.getElementById('snippet-name');
 const descriptionElement = document.getElementById('description-element');
@@ -98,9 +99,10 @@ function submitAnswer() {
         answerInput.value = '';
         globalOutput = undefined;
         changeCodeSnippet();
-    } else { 
+    } else {
         console.log('Incorrect answer: ' + globalOutput);
     }
+    return outputString;
 }
 
 answerForm.onsubmit = function (event) {
@@ -114,4 +116,8 @@ selectDifficulty.onchange = function () {
 
 skipButton.onclick = function () {
     changeCodeSnippet();
+}
+
+answerButton.onclick = function () {
+    alert(`Output: ${submitAnswer()}`);
 }
